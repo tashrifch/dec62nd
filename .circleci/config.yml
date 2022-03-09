@@ -3,7 +3,7 @@ jobs:
   build: 
     docker: 
       - 
-        image: "circleci/openjdk:8-jdk-browsers"
+        image: "circleci/openjdk:10.0-jdk-browsers"
     steps: 
       - checkout
       - setup_remote_docker
