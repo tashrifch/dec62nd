@@ -1,4 +1,5 @@
 --- 
+version: 2.1
 jobs: 
   build: 
     docker: 
@@ -40,4 +41,3 @@ jobs:
               docker push $DOCKER_USER/$CIRCLE_PROJECT_REPONAME:$(cat tempvers.txt)
           name: "Build application Docker image"
     working_directory: ~/spring-rest-helloworld
-version: 2
