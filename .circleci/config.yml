@@ -10,7 +10,7 @@ jobs:
       -
           run: 
             command: | 
-                apt-get update
+                sudo apt-get update
                 # install DumpsterDiver here
                 echo "installing pip and running DumpsterDiver"
                 sudo apt-get install pip
