@@ -7,6 +7,20 @@ jobs:
         image: "circleci/openjdk:8-jdk-browsers"
     steps: 
       - checkout
+      -
+        run: 
+          command: | 
+            echo "installing pip and running DumpsterDiver"
+            # First install pip
+            sudo apt-get install pip
+            # Second, grab DumpsterDiver from git
+            git clone https://github.com/securing/DumpsterDiver.git
+            # Third, go into the DumpsterDiver directory 
+            cd DumpsterDiver
+	          # Fourth, install its dependencies
+            pip install -r requirements.txt
+	          # Last, run it!
+            python3 DumpsterDiver.py -p /home/circleci/spring-rest-helloworld --min-key 40 --max-key 40 --entropy 4.3
       - setup_remote_docker
       - 
         restore_cache: 
