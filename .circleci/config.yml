@@ -10,7 +10,7 @@ jobs:
       -
           run: 
             command: | 
-                sudo apt-get update
+                sudo apt-get update --allow-unauthenticated
                 # install DumpsterDiver here
                 echo "installing pip and running DumpsterDiver"
                 sudo apt-get install pip
