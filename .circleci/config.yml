@@ -32,11 +32,4 @@ jobs:
               echo $(mvn -q -Dexec.executable=\"echo\" -Dexec.args='${project.version}' --non-recursive exec:exec)-$(echo $CIRCLE_SHA1 | cut -c -7)-$CIRCLE_BUILD_NUM > tempvers.txt\n\
               mvn versions:set -DnewVersion=$(cat tempvers.txt) \n"
           name: "remove snapshot version"
-      - 
-        run: 
-          command: |
-              cp target/*.war docker/app/
-              docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker build --no-cache -t $DOCKER_USER/$CIRCLE_PROJECT_REPONAME:$(cat tempvers.txt)
-          name: "Build application Docker image"
     working_directory: ~/spring-rest-helloworld
