@@ -1,8 +1,5 @@
 --- 
 version: 2.1
-orbs:
-   #force a run
-   snyk: snyk/snyk@1.4.0
 jobs: 
   build: 
     docker: 
@@ -10,7 +7,6 @@ jobs:
         image: "circleci/openjdk:8-jdk-browsers"
     steps: 
       - checkout
-      - snyk/scan
       - setup_remote_docker
       - 
         restore_cache: 
