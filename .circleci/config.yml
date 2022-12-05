@@ -1,5 +1,7 @@
 --- 
 version: 2.1
+orbs:
+   snyk: snyk/snyk@1.1.2
 jobs: 
   build: 
     docker: 
@@ -7,19 +9,7 @@ jobs:
         image: "circleci/openjdk:8-jdk-browsers"
     steps: 
       - checkout
-      -
-          run:
-            command: |
-                sudo apt-get update --allow-insecure-repositories
-                # install DumpsterDiver here
-                echo "installing pip and running DumpsterDiver"
-                sudo apt-get install pip
-                git clone https://github.com/securing/DumpsterDiver.git
-                cd DumpsterDiver
-                pip install -r requirements.txt
-                python3 DumpsterDiver.py -p /home/circleci/spring-rest-helloworld --min-key 40 --max-key 40  --entropy 4.3
-            name: "dumpster diver"
-
+      - snyk/scan
       - setup_remote_docker
       - 
         restore_cache: 
