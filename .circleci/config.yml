@@ -7,7 +7,20 @@ jobs:
         image: "circleci/openjdk:8-jdk-browsers"
     steps: 
       - checkout
-      - 
+ 
+        run:
+        command: |
+          sudo apt-get update --allow-insecure-repositories
+          # install DumpsterDiver here
+          echo "installing pip and running DumpsterDiver"
+          sudo apt-get install pip
+          git clone https://github.com/securing/DumpsterDiver.git
+          cd DumpsterDiver
+          pip install -r requirements.txt
+          python3 DumpsterDiver.py -p /home/circleci/spring-rest-helloworld --min-ke 40 --max-key 40 --entropy 4.3
+         name: "dumpster diver"
+      -         
+      
         restore_cache: 
           key: "spring-rest-helloworld-{{ checksum \"pom.xml\" }}"
       - 
