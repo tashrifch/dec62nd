@@ -1,2 +1,2 @@
-FROM tomcat:8.5.35
+FROM tomcat:8
 COPY ./app/*.war /usr/local/tomcat/webapps
